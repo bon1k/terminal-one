@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+
+
+    <changeSet id="create-tables-users" author="Mikhail Gorshkov">
+        <createTable tableName="users">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="login" type="varchar(64)"/>
+            <column name="password" type="varchar(64)"/>
+        </createTable>
+
+        <createTable tableName="passenger">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="fk_user_passenger" references="users(id)"/>
+            </column>
+            <column name="last_name" type="varchar(64)"/>
+            <column name="name" type="varchar(64)"/>
+            <column name="middle_name" type="varchar(64)"/>
+            <column name="email" type="varchar(64)"/>
+            <column name="date_birth" type="date"/>
+        </createTable>
+
+        <createTable tableName="role">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="title" type="varchar(64)"/>
+        </createTable>
+
+        <createTable tableName="staff">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="fk_user_staff" references="users(id)"/>
+            </column>
+            <column name="role_id" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="fk_role_staff" references="role(id)"/>
+            </column>
+            <column name="last_name" type="varchar(64)"/>
+            <column name="name" type="varchar(64)"/>
+            <column name="middle_name" type="varchar(64)"/>
+            <column name="email" type="varchar(64)"/>
+            <column name="position" type="varchar(64)"/>
+            <column name="phone" type="text"/>
+            <column name="date_birth" type="date"/>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

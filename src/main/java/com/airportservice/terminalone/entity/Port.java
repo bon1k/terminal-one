@@ -1,16 +1,19 @@
 package com.airportservice.terminalone.entity;
 
 import jakarta.persistence.Entity;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.TimeZone;
 @Getter
 @Setter
-public class Airport {
+@Entity
+public class Port extends Identity{
     private String name;
-    private String city;
     private String country;
-    private TimeZone timeZone;
+    private String city;
+    private String code;
+    private long timeZone;
 }

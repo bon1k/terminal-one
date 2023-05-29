@@ -1,28 +1,32 @@
 package com.airportservice.terminalone.controller;
 
+import com.airportservice.terminalone.dto.PassengerDto;
 import com.airportservice.terminalone.entity.Passenger;
+import com.airportservice.terminalone.mapper.IEntityMapper;
+import com.airportservice.terminalone.service.ICrudService;
 import com.airportservice.terminalone.service.IPassengerService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.Optional;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/passenger")
-public class PassengerController {
+@RequestMapping("/api/v1/passenger")
+public class PassengerController extends CrudController<Passenger, PassengerDto>{
 
-    @Autowired
-    private IPassengerService passengerService;
+    IPassengerService passengerService;
+    IEntityMapper<Passenger, PassengerDto> entityMapper;
 
-    @GetMapping("/{id}")
-    public Passenger getPassenger(@PathVariable Long id) {
-        return passengerService.findById(id).orElseThrow();
+    public PassengerController(IPassengerService passengerService, IEntityMapper<Passenger, PassengerDto> entityMapper) {
+        this.passengerService = passengerService;
+        this.entityMapper = entityMapper;
     }
 
-    @PostMapping("/register")
-    public Passenger save(@RequestBody Passenger passenger) {
-        return passengerService.save(passenger);
+    @Override
+    public ICrudService<Passenger> getService() {
+        return passengerService;
     }
 
-
+    @Override
+    public IEntityMapper<Passenger, PassengerDto> getMapper() {
+        return entityMapper;
+    }
 }

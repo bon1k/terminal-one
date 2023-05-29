@@ -1,16 +1,31 @@
+/*
 package com.airportservice.terminalone.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+import java.util.Date;
+
+@Getter
+@Setter
 @Entity
-public class Staff {
-     @Id
-     @GeneratedValue(strategy = GenerationType.IDENTITY)
-     String position;
-     int securityLevel;
+public class Staff extends Identity {
+     private String lastName;
+     private String name;
+     private String middleName;
+     private String email;
+     private String position;
+     private String phone;
+     private Date dateBirth;
+
+     @ManyToOne
+     @JoinColumn(name = "role_id")
+     private Role role;
+
+     @OneToOne
+     @JoinColumn(name = "user_id")
+     private User userId;
 }
+*/

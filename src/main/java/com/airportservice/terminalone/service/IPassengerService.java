@@ -1,8 +1,7 @@
 package com.airportservice.terminalone.service;
 
-import com.airportservice.terminalone.repository.IPassengerRepository;
+import com.airportservice.terminalone.entity.Passenger;
 
-public interface IPassengerService extends IPassengerRepository{
-
+public interface IPassengerService extends ICrudService<Passenger>{
 
 }

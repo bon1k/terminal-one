@@ -1,20 +1,25 @@
 package com.airportservice.terminalone.entity;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.Date;
 
 @Getter
 @Setter
 @Entity
-public class Passenger {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+@EqualsAndHashCode
+public class Passenger extends Identity {
+    private String lastName;
+    private String name;
+    private String middleName;
     private String email;
-    private String cardNumber;
+    private Date dateBirth;
+    private Long userId;
+    //TODO: добавить в бд
+//    private String gender;
+//    private Integer phoneNumber;
+//    private DocumentProofIdentity documentProofIdentity;
 }

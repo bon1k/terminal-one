@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="create-tables-plane" author="Mikhail Gorshkov">
+        <createTable tableName="port">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(64)"/>
+            <column name="country" type="varchar(64)"/>
+            <column name="city" type="varchar(64)"/>
+            <column name="code" type="varchar(64)"/>
+            <column name="time_zone" type="int"/>
+        </createTable>
+
+        <createTable tableName="plane">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="side_code" type="varchar(64)"/>
+            <column name="flight_range" type="BIGINT"/>
+            <column name="passenger_capacity" type="BIGINT"/>
+            <column name="fuel consumption" type="BIGINT"/>
+            <column name="port_id" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="fk_port_plane" references="port(id)"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="route">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="depart_port_id" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="fk_port_depart_route" references="port(id)"/>
+            </column>
+            <column name="arrival_port_id" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="fk_port_arrival_route" references="port(id)"/>
+            </column>
+            <column name="plane_id" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="fk_plane_route" references="plane(id)"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="trip">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="route_id" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="fk_route_trip" references="route(id)"/>
+            </column>
+            <column name="passenger_id" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="fk_passenger_trip" references="passenger(id)"/>
+            </column>
+            <column name="seat" type="BIGINT"/>
+        </createTable>
+
+    </changeSet>
+
+</databaseChangeLog>

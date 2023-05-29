@@ -1,13 +1,14 @@
-package com.airportservice.terminalone.entity;
+package com.airportservice.terminalone.dto;
 
-import jakarta.persistence.Entity;
+
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-@Entity
-public class Plane extends Identity{
+@EqualsAndHashCode
+public class PlaneDto extends IdentityDto{
     private String sideCode;
     // TODO: добавить в бд private String aviaCompanyName;
     private Integer flightRange;

@@ -4,6 +4,14 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
 
-    <include file="scripts/rename-column-cardNamber.xml" relativeToChangelogFile="true"/>
+
+    <changeSet id="add-column-route" author="Mikhail Gorshkov">
+        <addColumn tableName="route">
+            <column name="departure_date_time" type="date">
+            </column>
+            <column name="arrival_date_time" type="date">
+            </column>
+        </addColumn>
+    </changeSet>
 
 </databaseChangeLog>

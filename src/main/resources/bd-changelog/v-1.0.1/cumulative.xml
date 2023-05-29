@@ -4,7 +4,8 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
 
-    <include file="scripts/create-passenger-table.xml" relativeToChangelogFile="true"/>
-    <include file="scripts/create-staff-table.xml" relativeToChangelogFile="true"/>
-
+    <include file="scripts/create-table-users.xml" relativeToChangelogFile="true"/>
+    <include file="scripts/create-table-plane.xml" relativeToChangelogFile="true"/>
+    <include file="scripts/add-column-route.xml" relativeToChangelogFile="true"/>
+    <include file="scripts/change-column_plane.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>

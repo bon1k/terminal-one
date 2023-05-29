@@ -7,9 +7,10 @@ import lombok.Setter;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 
-
 @Setter
 @Getter
+@MappedSuperclass
+@EntityListeners({AuditingEntityListener.class})
 @EqualsAndHashCode
 public abstract class Identity {
     @Id

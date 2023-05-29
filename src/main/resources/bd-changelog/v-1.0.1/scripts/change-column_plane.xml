@@ -4,8 +4,12 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
 
-    <changeSet id="column rename" author="Mikhail Gorshkov">
-        <renameColumn oldColumnName="cardNumber" newColumnName="card_number" tableName="passenger" columnDataType="varchar(64)"/>
+
+    <changeSet id="change-column_plane" author="Mikhail Gorshkov">
+        <renameColumn columnDataType="BIGINT"
+                      newColumnName="fuel_consumption"
+                      oldColumnName="fuel consumption"
+                      tableName="plane"/>
     </changeSet>
 
 </databaseChangeLog>
